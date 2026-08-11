@@ -51,11 +51,6 @@ Download the latest `.exe` from the **Assets** section of the latest release.
 6. Continue playing until either you or the computer reaches the required score.
 7. Choose whether to restart or close the game.
 
-## Version
-
-**Current Version: v1.1.0**
-
-See the [release history](https://github.com/sooskes/cpp-rock-paper-scissors/releases) for previous versions and updates.
 
 ## Changelog
 
