@@ -138,6 +138,17 @@ This project helped me practice:
 
 ---
 
+## 🙌 Original Project
+
+This project was originally created by **[@baramanfadayan-byte](https://github.com/baramanfadayan-byte)**.
+
+You can find the original project here:
+
+**[🔗 rock-paper-scissors.py — Original Repository](https://github.com/baramanfadayan-byte/rock-paper-scissors.py)**
+
+Thank you to **[@baramanfadayan-byte](https://github.com/baramanfadayan-byte)** for creating the original project that this repository was built from.
+
+
 ## License
 
 This project is licensed under the MIT License.
