@@ -1,40 +1,58 @@
-# ==========================================================
-# Project: Rock Paper Scissors Game
+# ============================================================
+# Rock Paper Scissors
+#
 # Description:
-# A simple command-line Rock Paper Scissors game built with Python.
-# The player competes against the computer and tries to win rounds.
+# A console-based Rock Paper Scissors game where the player
+# competes against a randomly choosing computer opponent.
+# The player can choose how many points are needed to win
+# each match.
 #
 # Features:
-# - Player vs Computer gameplay
-# - Random computer move selection
-# - Input validation system
-# - Score tracking for player and computer
-# - Replay option after each round
-# - Function-based program structure
-#
-# Language: Python
-# ==========================================================
-
+# - Custom points needed to win
+# - Input validation for the required points
+# - Rock, Paper, Scissors input
+# - Short commands: r, p, s
+# - Random computer choices
+# - Player and computer score tracking
+# - Round winner detection
+# - Match winner detection
+# - Option to restart or close the game
+# ============================================================
 
 import random
 import time
 
+def roundAmountSelector():
+    while True:
+        roundAmount = input("Points needed to win: ")
+        # Check that the input contains only digits before converting it to an integer.
+        if not roundAmount.isdigit():
+            print("Something went wrong, Please enter a numeric value.")
+            continue
 
-# Gets player's choice and checks if the input is valid
+        roundAmount = int(roundAmount)
+
+        if roundAmount <= 1:
+            print("The round amount cannot be under 1 round!")
+            continue
+        elif roundAmount > 100:
+            print("The round amount cannot be over 100 rounds!")
+            continue
+        return roundAmount
+
 def playerOpSelector():
     while True:
         givenValue = input("choose between(Rock, Paper, Scissors): ")
 
         givenValue = givenValue.lower()
 
-        # Allows both full names and short versions (r, p, s)
+        # Allow both the full choice and its single-letter shortcut.
         if givenValue != "rock" and givenValue != "paper" and givenValue != "scissors" and givenValue != "r" and givenValue != "p" and givenValue != "s":
             print("Please enter a valid value.")
             continue
 
         break
 
-    # Converts player's input into a standard format
     if givenValue == "rock" or givenValue == "r":
         return "rock"
     elif givenValue == "paper" or givenValue == "p":
@@ -42,9 +60,8 @@ def playerOpSelector():
     elif givenValue == "scissors" or givenValue == "s":
         return "scissors"
 
-
-# Randomly chooses the computer's move
 def computerOpSelector():
+    # Generate a random number that represents one of the three possible choices.
     opRandomizer = random.randint(0, 2)
 
     if opRandomizer == 0:
@@ -54,8 +71,6 @@ def computerOpSelector():
     elif opRandomizer == 2:
         return "scissors"
 
-
-# Displays the choices made by player and computer
 def showSelectedOp(playerOp, computerOp):
 
     if playerOp == "rock" or playerOp == "r":
@@ -72,31 +87,27 @@ def showSelectedOp(playerOp, computerOp):
     elif computerOp == "scissors":
         print("Computer chose Scissors")
 
-
-# Checks the result of the round and shows the winner
 def showWinner(playerOp, computerOp):
 
     if playerOp == "rock" and computerOp == "rock":
-        print("it's a tie.")
+        print("It's a tie.")
     elif playerOp == "rock" and computerOp == "paper":
-        print("YOU LOST :(")
+        print("You lost the round.")
     elif playerOp == "rock" and computerOp == "scissors":
-        print("YOU WON :)")
+        print("You won the round.")
     elif playerOp == "paper" and computerOp == "rock":
-        print("YOU WON :)")
+        print("You won the round.")
     elif playerOp == "paper" and computerOp == "paper":
-        print("it's a tie.")
+        print("It's a tie.")
     elif playerOp == "paper" and computerOp == "scissors":
-        print("YOU LOST :(")
+        print("You lost the round.")
     elif playerOp == "scissors" and computerOp == "scissors":
-        print("it's a tie.")
+        print("It's a tie.")
     elif playerOp == "scissors" and computerOp == "paper":
-        print("YOU WON :)")
+        print("You won the round.")
     elif playerOp == "scissors" and computerOp == "rock":
-        print("YOU LOST :(")
+        print("You lost the round.")
 
-
-# Asks the player if they want to continue the game
 def continuationPermission():
 
     while True:
@@ -104,27 +115,29 @@ def continuationPermission():
 
         givenValue = givenValue.lower()
 
-        # Validates the continue/exit input
         if givenValue != "yes" and givenValue != "y" and givenValue != "n" and givenValue != "no":
             print("Please enter a valid value.")
+
             continue
 
         break
 
     if givenValue == "y" or givenValue == "yes":
         print("Restarting game")
+
         time.sleep(1)
+
         return True
 
     print("Thank you for playing :)\nClosing game.")
+
     time.sleep(1.2)
 
     return False
 
-
-# Calculates player's score after each round
 def playerRoundStats(playerPoints, computerPoints):
 
+    # Return one point only when the player wins the round.
     if playerPoints == "rock" and computerPoints == "scissors":
         return 1
     elif playerPoints == "paper" and computerPoints == "rock":
@@ -134,10 +147,9 @@ def playerRoundStats(playerPoints, computerPoints):
 
     return 0
 
-
-# Calculates computer's score after each round
 def computerRoundStats(playerPoints, computerPoints):
 
+    # Return one point only when the computer wins the round.
     if playerPoints == "scissors" and computerPoints == "rock":
         return 1
     elif playerPoints == "rock" and computerPoints == "paper":
@@ -147,44 +159,41 @@ def computerRoundStats(playerPoints, computerPoints):
 
     return 0
 
-
-# Shows current game score
-def showRoundStats(playerPoints, computerPoints):
+def showRoundStats(playerPoints, computerPoints, neededRounds):
     print("PLAYER", playerPoints, '\t', "COMPUTER", computerPoints)
+    print("\tFirst to", neededRounds)
 
+def endCheck(neededRounds, playerPoints, computerPoints):
 
-# Initial scores
-playerPointCounter = 0
-computerPointCounter = 0
+    # Check whether either player has reached the required winning score.
+    if playerPoints == neededRounds:
+        print("\n\tYOU WON :)")
+        return False
+    elif computerPoints == neededRounds:
+        print("\n\tYOU LOST :(")
+        return False
+    return True
 
-
-# Main game loop
-# Runs until the player chooses to exit
 while True:
+    playerPointCounter = 0
+    computerPointCounter = 0
 
-    # Select player and computer moves
-    player = playerOpSelector()
+    roundAmount = roundAmountSelector()
 
-    computer = computerOpSelector()
+    while endCheck(roundAmount, playerPointCounter, computerPointCounter):
+        player = playerOpSelector()
 
+        computer = computerOpSelector()
 
-    # Display moves and decide winner
-    showSelectedOp(player, computer)
+        showSelectedOp(player, computer)
 
-    showWinner(player, computer)
+        playerPointCounter += playerRoundStats(player, computer)
 
+        computerPointCounter += computerRoundStats(player, computer)
 
-    # Update scores
-    playerPointCounter += playerRoundStats(player, computer)
+        showWinner(player, computer)
 
-    computerPointCounter += computerRoundStats(player, computer)
-
-
-    # Display current score
-    showRoundStats(playerPointCounter, computerPointCounter)
-
-
-    # Continue playing or close the game
+        showRoundStats(playerPointCounter, computerPointCounter, roundAmount)
     if continuationPermission():
         continue
 
