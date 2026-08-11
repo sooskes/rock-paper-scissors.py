@@ -148,6 +148,7 @@ You can find the original project here:
 
 Thank you to **[@baramanfadayan-byte](https://github.com/baramanfadayan-byte)** for creating the original project that this repository was built from.
 
+---
 
 ## License
 
