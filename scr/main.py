@@ -21,23 +21,28 @@
 
 import random
 import time
+import os
 
 def roundAmountSelector():
     while True:
         roundAmount = input("Points needed to win: ")
         # Check that the input contains only digits before converting it to an integer.
         if not roundAmount.isdigit():
+            os.system("cls")
             print("Something went wrong, Please enter a numeric value.")
             continue
 
         roundAmount = int(roundAmount)
 
-        if roundAmount <= 1:
+        if roundAmount < 1:
+            os.system("cls")
             print("The round amount cannot be under 1 round!")
             continue
         elif roundAmount > 100:
+            os.system("cls")
             print("The round amount cannot be over 100 rounds!")
             continue
+        os.system("cls")
         return roundAmount
 
 def playerOpSelector():
@@ -48,10 +53,13 @@ def playerOpSelector():
 
         # Allow both the full choice and its single-letter shortcut.
         if givenValue != "rock" and givenValue != "paper" and givenValue != "scissors" and givenValue != "r" and givenValue != "p" and givenValue != "s":
+            os.system("cls")
             print("Please enter a valid value.")
             continue
 
         break
+
+    os.system("cls")
 
     if givenValue == "rock" or givenValue == "r":
         return "rock"
@@ -116,6 +124,7 @@ def continuationPermission():
         givenValue = givenValue.lower()
 
         if givenValue != "yes" and givenValue != "y" and givenValue != "n" and givenValue != "no":
+            os.system("cls")
             print("Please enter a valid value.")
 
             continue
@@ -123,12 +132,14 @@ def continuationPermission():
         break
 
     if givenValue == "y" or givenValue == "yes":
+        os.system("cls")
         print("Restarting game")
 
         time.sleep(1)
 
         return True
 
+    os.system("cls")
     print("Thank you for playing :)\nClosing game.")
 
     time.sleep(1.2)
@@ -175,6 +186,7 @@ def endCheck(neededRounds, playerPoints, computerPoints):
     return True
 
 while True:
+    os.system("cls")
     playerPointCounter = 0
     computerPointCounter = 0
 
