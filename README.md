@@ -6,8 +6,6 @@ The player competes against a randomly choosing computer opponent in customizabl
 
 ## Download
 
-[![Latest Version](https://img.shields.io/github/v/release/sooskes/rock-paper-scissors.py?label=Latest%20Version)](https://github.com/sooskes/rock-paper-scissors.py/releases/latest)
-
 [![Download Latest Release](https://img.shields.io/badge/Download-Latest%20Release-blue)](https://github.com/sooskes/rock-paper-scissors.py/releases/latest)
 
 Download the latest `.exe` from the **Assets** section of the latest release.
