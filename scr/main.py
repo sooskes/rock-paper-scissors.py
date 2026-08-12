@@ -80,7 +80,6 @@ def computerOpSelector():
         return "scissors"
 
 def showSelectedOp(playerOp, computerOp):
-
     if playerOp == "rock" or playerOp == "r":
         print("You chose Rock")
     elif playerOp == "paper" or playerOp == "p":
@@ -96,7 +95,6 @@ def showSelectedOp(playerOp, computerOp):
         print("Computer chose Scissors")
 
 def showWinner(playerOp, computerOp):
-
     if playerOp == "rock" and computerOp == "rock":
         print("It's a tie.")
     elif playerOp == "rock" and computerOp == "paper":
@@ -117,7 +115,6 @@ def showWinner(playerOp, computerOp):
         print("You lost the round.")
 
 def continuationPermission():
-
     while True:
         givenValue = input("Do you wish to continue playing(y/n): ")
 
@@ -147,7 +144,6 @@ def continuationPermission():
     return False
 
 def playerRoundStats(playerPoints, computerPoints):
-
     # Return one point only when the player wins the round.
     if playerPoints == "rock" and computerPoints == "scissors":
         return 1
@@ -159,7 +155,6 @@ def playerRoundStats(playerPoints, computerPoints):
     return 0
 
 def computerRoundStats(playerPoints, computerPoints):
-
     # Return one point only when the computer wins the round.
     if playerPoints == "scissors" and computerPoints == "rock":
         return 1
@@ -175,7 +170,6 @@ def showRoundStats(playerPoints, computerPoints, neededRounds):
     print("\tFirst to", neededRounds)
 
 def endCheck(neededRounds, playerPoints, computerPoints):
-
     # Check whether either player has reached the required winning score.
     if playerPoints == neededRounds:
         print("\n\tYOU WON :)")
